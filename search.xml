@@ -3,16 +3,16 @@
   
     
     <entry>
-      <title><![CDATA[My New Post]]></title>
-      <url>%2F2017%2F04%2F10%2FMy-New-Post%2F</url>
-      <content type="text"></content>
+      <title><![CDATA[Java常见的面试题和答案]]></title>
+      <url>%2F2017%2F04%2F11%2FJava%E5%B8%B8%E8%A7%81%E7%9A%84%E9%9D%A2%E8%AF%95%E9%A2%98%E5%92%8C%E7%AD%94%E6%A1%88%2F</url>
+      <content type="text"><![CDATA[最近在面试，总结了下常见的面试问题以及自己的回答。可能有不对的地方，望斧正！ 结合项目谈谈你对 MVC 的理解？MVC 是 Model-View-Control 的简称，即模型—视图—控制器。MVC 是一种设计模式，它强制性把应用程序的输入、处理和输出分开。MVC 中的模型、视图、控制器它们分别担负着不同的任务。 视图：视图是用户看到并与之交互的界面。视图向用户显示相关数据，并接受用户的输入。视图不进行任何业务逻辑的处理。 模型：模型表示业务数据和业务处理。相当于一个 JavaBean 。一个模型能为多个视图提供数据。*控制器：当用户点击 Web 页面中的提交按钮时，控制器接受请求并调用相应的模型去处理请求。然后根据处理的结果调用相应的视图来显示处理结果。MVC 处理过程：首先控制器接受用户的请求，调用相应的模型来进行业务处理，并返回数据给控制器。控制器调用相应的视图来显示处理的结果，并通过视图呈现给用户。项目中对相应 MVC ：View 对应项目中的 Jsp ，Control 对应 Action，Model 对应 service+dao 层的业务逻辑和持久化的操做。 项目中为什么用 SSH 框架？使用 Struts 是因为 Struts 是基于 MVC 模式的，很好的将应用程序进行了分层，使开发者更关注于业务逻辑的实现；Struts有着丰富的标签库，能大大提高开发效率。使用 Hibernate 是因为 Hibernate 为 Java 应用提供了一个易用的、高效率的对象关系映射框架。Hibernate 是个轻量级的持久性框架，功能丰富。使用 Spring 是因为 Spring 基于 IOC 和 AOP 架构多层J2EE系统的框架。 挑一个你做的功能说明 SSH 框架的应用原理？在表示层中，首先通过 JSP 页面实现交互界面，负责传送请求（Request）和接收响应（Response），然后 Struts 根据配置文件（*.struts.xml）将 ActionServlet 接收到的 Request 委派给相应的 Action 处理。 在业务层中，管理服务组件的 SpringIOC 容器负责向 Action 提供业务模型（Model）组件和该组件的协作对象数据处理（DAO）组件完成业务逻辑，并提供事务处理、缓冲池等容器组件以提升系统性能和保证数据的完整性。 在持久层中， 则依赖于 Hibernate 的对象映射和数据库交互，处理 DAO 组件请求的数据，并返回处理的结果。 Struts 工作原理？]]></content>
     </entry>
 
     
     <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>%2F2017%2F04%2F10%2Fhello-world%2F</url>
-      <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <title><![CDATA[MD5加密]]></title>
+      <url>%2F2017%2F04%2F11%2FMD5%E5%8A%A0%E5%AF%86%2F</url>
+      <content type="text"><![CDATA[为了不让别人看直接看到保存的密码等信息，通常密码先采用MD5加密后再保存。MD5加密不可逆的，网上破解MD5方法原理是，拿MD5加密后的数据去他们亿万级的数据库去匹配。要防止别人破解可以用加密后数据再MD5加密几次，像银行保存的密码信息至少加密十次以上。下图是某破解网站能破解的数据，也只能破解三次加密，而且还是收费，所以担心破解可以多加密几次。 MD5加密工具类：1234567891011121314151617181920212223242526public class Md5Utils &#123; public static String md5(String str)&#123; StringBuilder mess = new StringBuilder(); try &#123; //获取MD5加密器 MessageDigest md = MessageDigest.getInstance("MD5"); byte[] bytes = str.getBytes(); byte[] digest = md.digest(bytes); for (byte b : digest)&#123; //把每个字节转成16进制数 int d = b &amp; 0xff;// 0x000000ff String hexString = Integer.toHexString(d); if (hexString.length() == 1) &#123;//字节的高4位为0 hexString = "0" + hexString; &#125; mess.append(hexString);//把每个字节对应的2位十六进制数当成字符串拼接一起 &#125; &#125; catch (NoSuchAlgorithmException e) &#123; // TODO Auto-generated catch block e.printStackTrace(); &#125; return mess + ""; &#125;&#125;]]></content>
     </entry>
 
     
